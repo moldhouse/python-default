@@ -26,7 +26,7 @@ jobs:
       - name: Format
         run: uv run ruff format --diff .
       - name: Check types
-        run: uv run mypy --install-types --non-interactive .
+        run: uv run ty check
 
   test:
     runs-on: ubuntu-latest
