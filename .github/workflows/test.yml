@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  lint:
+  check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -21,24 +21,5 @@ jobs:
           python-version-file: "pyproject.toml"
       - name: Install dependencies
         run: uv sync
-      - name: Lint
-        run: uv run ruff check .
-      - name: Format
-        run: uv run ruff format --diff .
-      - name: Check types
-        run: uv run ty check
-
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-      - name: Install uv
-        uses: astral-sh/setup-uv@v7
-      - name: Set up Python
-        uses: actions/setup-python@v6
-        with:
-          python-version-file: "pyproject.toml"
-      - name: Install dependencies
-        run: uv sync
-      - name: Test
-        run: uv run pytest
+      - name: Run checks
+        run: uv run ./check.sh
