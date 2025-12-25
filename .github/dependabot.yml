@@ -4,4 +4,17 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
+
+  - package-ecosystem: "uv"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      # It's nice to receive minor and patch updates grouped together.
+      minor-dependencies:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
